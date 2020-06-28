@@ -23,7 +23,7 @@
         "pg-promise": "^10.5.7"
     },
     "devDependencies": {
-        "eslint": "^2",
+        "eslint": "^4",
         "tape": "^4",
         "istanbul": "~0.4.3",
         "is-my-json-valid": "^2.13.1",
