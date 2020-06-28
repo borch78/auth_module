@@ -1,0 +1,13 @@
+{
+    "app": {
+        "port": 8000
+    },
+    "db": {
+        "user": "postgres",
+        "host": "localhost",
+        "username": "authAdmin",
+        "port": 5432,
+        "database": "authModule",
+        "pass": "testauth_module"
+    }
+}
