@@ -2,10 +2,6 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt-nodejs');
-
-const config = require('../../config/default.json');
-const pgp = require("pg-promise")();
 
 const db = require('./dbClient');
 
@@ -17,10 +13,7 @@ passport.use(
             passwordField: 'password',
         },
         async (login, password, done) => {
-            const salt = bcrypt.genSaltSync(10);
-            const hash = bcrypt.hashSync(password, salt);
-
-            db.one('SELECT "firstName", "lastName", "email" FROM users where login = $1 AND "passwordHash" = $2', login, hash)
+            db.one('SELECT "firstName", "lastName", "email" FROM users where login = $1 AND "passwordHash" = crypt($2, "salt") LIMIT 1', login, password)
                 .then(user => {
                     if (!user) {
                         done(null, false, { message: 'User does not exist' });
